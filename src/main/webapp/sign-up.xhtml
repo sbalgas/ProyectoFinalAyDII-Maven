@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+
+    </h:head>
+    <h:body>
+
+        <ui:composition template="./resources/Template/Facelet.xhtml">
+            <ui:define name="top"></ui:define>
+            <ui:define name="content">
+                <h:form id="frmRegistrarUsuario" style="margin:0 auto;max-width:400px;">
+                    <p:growl id="mensajes" showDetail="true"/>
+                    <p:panel id="pnlPrincipal" header="Datos de Usuario">
+                        <h:panelGrid columns="2">
+                            <p:outputLabel id="txtName" value="Nombre:"/>
+                            <p:inputText id="txtNombre"  
+                                         required="true"
+                                         requiredMessage="Debe ingresar su nombre"/>
+
+                            <p:outputLabel id="txtSurname" value="Apellido:"/>
+                            <p:inputText id="txtApellido"  
+                                         required="true"
+                                         requiredMessage="Debe ingresar su apellido"/>
+                            <p:outputLabel id="lblDNI" value="DNI:"/>
+                            <p:inputNumber id="DNI" 
+                                           required="true"
+                                           requiredMessage="Debe ingresar su DNI"
+                                           decimalPlaces="0" maxValue="99999999"/>
+
+                            <p:outputLabel id="lblFechaDeNacimiento" 
+                                           for="txtFechaDeNacimiento" 
+                                           value="Fecha De Nacimiento:" />
+
+                            <p:calendar id="txtFechaDeNacimiento"
+                                        yearRange="c-80:c-18"
+                                        navigator="true"
+                                        required="true"
+                                        requiredMessage="Debe ingresar su fecha de nacimiento" 
+                                        showOn="button" />
+
+                            <p:outputLabel id="lblEmail" value="Email:"/>
+                            <h:inputText id="txtEmail"  
+                                         required="true"
+                                         requiredMessage="Debe ingresar su email"
+                                         validatorMessage="El email no es valido"
+                                         class="ui-inputfield ui-password ui-widget ui-state-default ui-corner-all">
+                                <f:validateRegex pattern="([^.@]+)(\.[^.@]+)*@([^.@]+\.)+([^.@]+)"/>
+
+                            </h:inputText> 
+                            <p:outputLabel id="lblContraseña" value="Contraseña:"/>
+                            <p:password id="txtContraseña"  
+                                        required="true"
+                                        requiredMessage="Debe ingresar su contraseña"
+                                        validatorMessage="Se requiere 8 caracteres como minimo">
+                                <f:validateLength minimum="8" />
+                                <p:ajax update="msgContraseña" event="keyup" />
+                            </p:password>
+
+                            <br/>
+                        </h:panelGrid >
+                        <center>
+                            <p:commandButton id="btnAceptar" value="Registrar" 
+                                             update="mensajes"
+                                             style="margin: 20px"/>
+                            <br/>
+                            <p:message for="txtContraseña" id="msgContraseña" display="contraseña" />
+                        </center>
+                    </p:panel>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

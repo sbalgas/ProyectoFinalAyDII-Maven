@@ -1,0 +1,109 @@
+
+#top {
+    position: relative;
+    background-color: #036fab;
+    color: white;
+    padding: 5px;
+    margin: 0px 0px 10px 0px;
+}
+
+#bottom {
+    position: relative;
+    background-color: #c2dfef;
+    padding: 5px;
+    margin: 10px 0px 0px 0px;
+}
+
+#left {
+    float: left;
+    background-color: #ece3a5;
+    padding: 5px;
+    width: 150px;
+}
+
+#right {
+    float: right;
+    background-color: #ece3a5;
+    padding: 5px;
+    width: 150px;
+}
+
+.center_content {
+    position: relative;
+    background-color: #dddddd;
+    padding: 5px;
+}
+
+.left_content {
+    background-color: #dddddd;
+    padding: 5px;
+    margin-left: 170px;
+}
+
+.right_content {
+    background-color: #dddddd;
+    padding: 5px;
+    margin: 0px 170px 0px 170px;
+}
+
+#top a:link, #top a:visited {
+    color: white;
+    font-weight : bold;
+    text-decoration: none;
+}
+
+#top a:link:hover, #top a:visited:hover  {
+    color: black;
+    font-weight : bold;
+    text-decoration : underline;
+}
+
+html, body{
+    margin: 0;
+    height: 100%;
+}
+
+body{
+    background: url(../Imagenes/fondo.jpg);
+    background-size: cover;
+    background-position-y: center;
+}
+
+.center_content{
+    background: none;
+    position: relative;
+    width: 480px;
+    margin: -20px 50px 0 0;
+    top: 50%;
+    float: right;
+    padding: 0;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.ui-menu.ui-menubar .ui-menuitem .user-name {
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+.ui-menu.ui-menubar .ui-menuitem .ui-menuitem-link{
+    font-weight: bold;
+    color: #333;
+}
+
+.ui-growl {
+    top: auto !important;
+    bottom: 20px;
+}
+
+@media (max-width: 600px) {
+    .center_content{
+        float:none;
+        width: auto;
+        padding: 10px 0;
+        margin: 0 10px;
+        top: 0;
+        transform: none;
+    }   
+}

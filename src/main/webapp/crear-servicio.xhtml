@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+    </h:head>
+    <h:body>
+        <ui:composition template="./resources/Template/Facelet.xhtml"> 
+            <ui:define name="content">
+
+                <p:panel header="Agregar servicio">
+                    <center>
+                        <h:form>
+                            <p:growl id="mensajes" showDetail="true"/>
+
+                            <h:panelGrid columns="1" cellpadding="5">
+                                <p:outputLabel value="Buscar empresa por rubro:" for="rubroList" />
+
+                                <p:selectOneMenu id="rubroList" 
+                                                 value="#{rubroFormBean.rubro}">
+                                    <p:ajax event="valueChange" update="empresaList"
+                                            listener="#{rubroFormBean.applyFilter}" />
+                                    <f:selectItem itemLabel="Buscar" noSelectionOption="true"/>
+                                    <f:selectItems value="#{rubroFormBean.rubroList}" />
+                                </p:selectOneMenu>
+
+                                <p:outputLabel for="empresaList" value="Empresa" />
+                                <p:selectOneListbox style="width: 100%" id="empresaList" value="#{rubroFormBean.empresa}">
+
+                                    <f:selectItems var="servicio" value="#{rubroFormBean.servicioList}"
+                                                   itemValue="#{servicio.id}" itemLabel="#{servicio.nombre}"/>
+
+
+                                </p:selectOneListbox>
+
+                            </h:panelGrid>
+
+                            <p:commandButton value="Agregar" action="#{rubroFormBean.agregarServicio}" />
+
+
+                        </h:form>
+                    </center>
+                </p:panel>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+
+    </h:head>
+    <h:body>
+        <ui:composition template="./resources/Template/Facelet.xhtml">
+            <ui:define name="content">
+                <p:panel header="Efectuar pago">
+                    <center>
+                        <h:form>
+                            <p:growl id="mensajes" showDetail="true"/>
+                            <h:panelGrid columns="2" cellpadding="8">                                
+                                <p:outputLabel for="tarjeta" value="Tarjeta: "/>
+                                <p:selectOneMenu id="tarjeta" required="true" value="#{checkoutFormBean.marcaTarjeta}" 
+                                                 requiredMessage="Por favor, seleccione una tarjeta.">
+                                    <f:selectItem itemLabel="TARJETA DE CREDITO" itemValue="" />
+                                    <f:selectItem itemLabel="Visa" itemValue="Visa" />
+                                    <f:selectItem itemLabel="Naranja" itemValue="Naranja" />
+                                    <f:selectItem itemLabel="Masterd Card" itemValue="Masterd Card" />
+                                    <f:selectItem itemLabel="ICBC" itemValue="ICBC" />
+                                </p:selectOneMenu>
+
+                                <p:outputLabel for="numeroTarjeta" value="Numero: "/>
+                                <p:inputMask id="numeroTarjeta" required="true" 
+                                             placeholder="Numero de tarjeta de credito"
+                                             mask="9999-9999-9999-9999"
+                                             value="#{checkoutFormBean.numeroTarjeta}"
+                                             requiredMessage="Por favor, ingrese el numero de su tarjeta."
+                                             style="text-align: center;"/>
+
+                                <p:outputLabel for="titular" value="Titular: "/>
+                                <p:inputText id="titular" placeholder="Nombre del titular" required="true" 
+                                             value="#{checkoutFormBean.titularTarjeta}"
+                                             requiredMessage="Por favor, ingrese el nombre del titular de la tarjeta."
+                                             style="text-align: center;"/>
+
+                                <p:outputLabel for="vencimiento" value="Vencimiento: "/>
+                                <p:inputMask id="vencimiento" mask="99/9999" 
+                                             required="true" placeholder="MM/AAAA" 
+                                             value="#{checkoutFormBean.vencimientoTarjeta}"
+                                             requiredMessage="Por favor, ingrese la fecha de vencimiento de la tarjeta."
+                                             style="text-align: center;" />   
+
+
+                                <p:outputLabel for="cod_seguridad" value="Codigo: "/>
+                                <p:inputMask id="cod_seguridad" mask="999" required="true" 
+                                             placeholder="Codigo de Seguridad"
+                                             value="#{checkoutFormBean.codigoTarjeta}"
+                                             requiredMessage="Por favor, ingrese el codigo de seguridad."
+                                             style="text-align: center;"/> 
+
+                                <p:outputLabel value="Total: " for="subTotalText" />
+                                <p:inputText id="subTotalText" disabled="true" 
+                                             value="#{checkoutFormBean.subTotal}"
+                                             style="color: #000; opacity:.7;text-align: center;">
+                                    <f:convertNumber currencySymbol="$ " 
+                                                     type="currency" 
+                                                     maxIntegerDigits="5" 
+                                                     maxFractionDigits="2"
+                                                     locale="es_AR"/>
+                                </p:inputText>
+
+                            </h:panelGrid>
+                                                        
+                            <p:commandButton value="Pagar"
+                                             action="#{checkoutFormBean.pagarFacturas}"
+                                             update="mensajes"/>
+
+                        </h:form>
+
+                    </center>
+                </p:panel>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
